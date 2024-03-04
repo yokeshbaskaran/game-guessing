@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess & Win!</title>
+    <link rel="icon" href="images/gamestart.jpg" >
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section id="container"> 
+        <img src="images/gamestart.jpg" width="350" height="350"/>
+            <div class="game">
+                <span class="game-title">Guess and Win</span>
+                <span class="game-des">Enter any number from 1 to 10</span>
+                <input type="number" id="userno" />
+                <button id="disablebtn" onclick="random()">check</button>
+            
+                <p id="message" class="game-des">
+                    <!-- Guess it! -->
+                </p>
+                <p class="game-des">
+                    Attempts left: <span id="score">5</span>
+                </p>
+            </div>   
+    </section>
+
+    <div id="bg-popup">
+        Black Background for pop-up
+    </div>
+    <div id="winner">
+        <img src="images/winner.png" width="350" height="350" alt="winner" />
+        <button onclick="closepopup(event)">x</button>
+    </div>
+
+    <script>  
+    
+    var startGame = confirm('Do you want to start the game?');
+    if(startGame)
+    {
+        var popup = document.getElementById("bg-popup")
+        var winnerstatus = document.getElementById("winner")
+        var userno = document.getElementById("userno");
+        var message = document.getElementById("message");
+        var randomno = Math.floor(Math.random() * 10);
+        console.log(randomno);
+        var score = document.getElementById("score");
+        var totalscore = 5;
+
+        function random()
+        {
+            if(userno.value === '')
+            {
+                alert("Enter number to play game!")
+            }
+            else{
+                var userValue = Number(userno.value);
+                console.log(userValue);
+                if(userValue == randomno)
+                {
+                    console.log("Right!");
+                    message.textContent = "Absolutely Correct!";
+                    popup.style.display = 'block'
+                    winnerstatus.style.display = 'block' 
+                    // alert("You Won");
+                }
+                else
+                {
+                    totalscore = totalscore - 1;
+                    score.textContent = totalscore;
+                    message.textContent = "Wrong Guess!";
+                    if(totalscore == 0)
+                    {
+                        message.textContent = "You Lose";
+                        document.getElementById("disablebtn").disabled = true;
+                        location.reload()
+                    }                    
+                }
+            }
+        }  
+    } 
+    else{
+        alert("Just give it a try")
+        location.reload()
+    }    
+    function closepopup(event)
+    {
+        winnerstatus.style.display = 'none'            
+        popup.style.display = 'none'
+        location.reload()
+    }   
+    </script>
+</body>
+</html>
