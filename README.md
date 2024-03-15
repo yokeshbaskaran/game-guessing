@@ -7,4 +7,4 @@ It's a game which generates a random number from Math method[ Math.random() ] wh
 2.css
 3.javascript.
 ## Link:
-click here: <a href="https://yokeshbaskaran.github.io/game-guessing/">Guess & Win</a>
+click here: <a href="https://yokeshbaskaran.github.io/guessing-game/">Guess & Win</a>
